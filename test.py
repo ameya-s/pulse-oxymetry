@@ -62,4 +62,5 @@ def main():
         f.write(json.dumps(data))
 
 
-
+if __name__ == "__main__":
+    main()
