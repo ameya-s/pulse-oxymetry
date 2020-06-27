@@ -3,6 +3,7 @@ import json
 import time
 import numpy as np
 
+
 def get_last_k_readings(data, var, kernel_size):
     x = list(data.items())
     x.reverse()
@@ -37,8 +38,8 @@ def main():
                 data[i]['w_red'] = data[i]['red']
                 data[i]['result_red'] = data[i]['w_red']
             else:
-                data[i]['w_ir'] = data[i]['ir'] + 0.95 * data[i-1]['w_ir']
-                data[i]['result_ir'] = data[i]['w_ir'] - data[i-1]['w_ir']
+                data[i]['w_ir'] = data[i]['ir'] + 0.95 * data[i - 1]['w_ir']
+                data[i]['result_ir'] = data[i]['w_ir'] - data[i - 1]['w_ir']
 
                 data[i]['w_red'] = data[i]['red'] + 0.95 * data[i - 1]['w_red']
                 data[i]['result_red'] = data[i]['w_red'] - data[i - 1]['w_red']
@@ -46,13 +47,12 @@ def main():
             # Mean Filter
             kernel_size = 10
             last_k_readings_ir = get_last_k_readings(data, 'result_ir', kernel_size)
-            data['mean_ir'] = last_k_readings_ir.mean()
+            data[i]['mean_ir'] = last_k_readings_ir.mean()
 
             last_k_readings_red = get_last_k_readings(data, 'result_red', kernel_size)
-            data['mean_red'] = last_k_readings_red.mean()
+            data[i]['mean_red'] = last_k_readings_red.mean()
 
             # Butterworth filter
-
 
             i += 1
         except IOError:
