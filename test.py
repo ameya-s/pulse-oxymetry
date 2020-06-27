@@ -18,7 +18,7 @@ def main():
 
     i = 0
     while True:
-        if i > 10000:
+        if i > 5000:
             break
         try:
             mx30.read_sensor()
