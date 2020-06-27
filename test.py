@@ -11,7 +11,7 @@ def get_last_k_readings(data, var, kernel_size):
 
 
 def main():
-    mx30 = max30100.MAX30100()
+    mx30 = max30100.MAX30100(led_current_red=50.0, led_current_ir=50.0)
     mx30.set_mode(max30100.MODE_SPO2)
     mx30.enable_spo2()
     data = {}
@@ -53,6 +53,8 @@ def main():
             data[i]['mean_red'] = last_k_readings_red.mean()
 
             # Butterworth filter
+            if i>0:
+                data[i]['butter_ir'] =
 
             i += 1
         except IOError:
