@@ -52,9 +52,9 @@ def main():
             last_k_readings_red = get_last_k_readings(data, 'result_red', kernel_size)
             data[i]['mean_red'] = last_k_readings_red.mean()
 
-            # Butterworth filter
-            if i>0:
-                data[i]['butter_ir'] =
+            # # Butterworth filter
+            # if i>0:
+            #     data[i]['butter_ir'] =
 
             i += 1
         except IOError:
