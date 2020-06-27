@@ -1,12 +1,12 @@
 import max30100
 import json
 import time
-
+import numpy as np
 
 def get_last_k_readings(data, var, kernel_size):
     x = list(data.items())
     x.reverse()
-    return [v[var] for i, v in x if i > len(x) - kernel_size - 1]
+    return np.array([v[var] for i, v in x if i > len(x) - kernel_size - 1])
 
 
 def main():
@@ -25,7 +25,7 @@ def main():
             print(mx30.ir, mx30.red)
 
             data[i] = {}
-            data[i]['timestamp'] = time.time_ns()
+            data[i]['timestamp'] = time.time()
             data[i]['ir'] = mx30.ir
             data[i]['red'] = mx30.red
 
