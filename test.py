@@ -11,7 +11,7 @@ def get_last_k_readings(data, var, kernel_size):
 
 
 def main():
-    mx30 = max30100.MAX30100(led_current_red=27.1, led_current_ir=27.1)
+    mx30 = max30100.MAX30100(led_current_red=27.1, led_current_ir=11.0)
     mx30.set_mode(max30100.MODE_SPO2)
     mx30.enable_spo2()
     data = {}
@@ -26,7 +26,7 @@ def main():
             print(mx30.ir, mx30.red)
 
             data[i] = {}
-            data[i]['timestamp'] = time.time()
+            data[i]['tst'] = round(time.time() * 1000)
             data[i]['ir'] = mx30.ir
             data[i]['red'] = mx30.red
 
