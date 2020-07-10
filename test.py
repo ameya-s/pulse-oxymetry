@@ -65,12 +65,9 @@ def main():
                     y_vals.append(float(data[i]['red']))
 
                     heart_rate(t_vals, y_vals)
-
-                    i += 1
                 except:
                     continue
-
-            t_vals, y_vals = [], []
+            i += 1
         except IOError:
             print('IO error : error in reading')
 
