@@ -58,7 +58,7 @@ def main():
             # if i>0:
             #     data[i]['butter_ir'] =
 
-            if j < 400 * (i+1):
+            if j < 400:
                 t_vec.append(data[i]['tst'])
                 red_vec.append(data[i]['red'])
                 j += 1
