@@ -20,7 +20,7 @@ def main():
     i = 0
     j = 0
 
-    t_start = time.time() * 1000
+    t_start = time.time() * 100
     while True:
         if i > 5000:
             break
