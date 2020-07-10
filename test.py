@@ -20,7 +20,7 @@ def main():
     i = 0
     j = 0
 
-    t_start = round(time.time() * 10)
+    t_start = time.time() * 1000
     while True:
         if i > 5000:
             break
@@ -30,7 +30,7 @@ def main():
             # print(mx30.ir, mx30.red)
 
             data[i] = {}
-            data[i]['tst'] = round(time.time() * 1000)
+            data[i]['tst'] = time.time() * 1000 - t_start
             data[i]['ir'] = mx30.ir
             data[i]['red'] = mx30.red
 
@@ -61,7 +61,7 @@ def main():
             #     data[i]['butter_ir'] =
 
             if j < 1900:
-                t_vec.append(data[i]['tst'] - t_start)
+                t_vec.append(data[i]['tst'])
                 red_vec.append(data[i]['red'])
                 j += 1
             else:
@@ -76,17 +76,6 @@ def main():
 
 
 def heart_rate(t_vec, red_vec):
-    t_vec = np.array(t_vec)
-    red_vec = np.array(red_vec)
-
-    #t_vec = (t_vec - 1594410000000000) / 1e6
-
-    # print("=============== t_vec  =============")
-    # print(t_vec)
-    #
-    # print("=============== red_vec  =============")
-    # print(red_vec)
-
     heart_rate_span = [10, 250]  # max span of heart rate
     pts = 1800  # points used for peak finding (400 Hz, I recommend at least 4s (1600 pts)
     smoothing_size = 20  # convolution smoothing size
@@ -102,31 +91,16 @@ def heart_rate(t_vec, red_vec):
     y_vals = red_vec
 
     y_vals = np.convolve(y_vals, np.ones((smoothing_size,)), 'same') / smoothing_size
-
-    # print("=============== t_vals  =============")
-    # print(t_vals)
-    #
-    # print("=============== y_vals  =============")
-    # print(y_vals)
-
     red_grad = np.gradient(y_vals, t_vals)
-
     red_grad[0:int(smoothing_size / 2) + 1] = np.zeros((int(smoothing_size / 2) + 1,))
     red_grad[-int(smoothing_size / 2) - 1:] = np.zeros((int(smoothing_size / 2) + 1,))
-
-    red_grad = np.nan_to_num(red_grad)
 
     y_vals = np.append(np.repeat(y_vals[int(smoothing_size / 2)], int(smoothing_size / 2)),
                        y_vals[int(smoothing_size / 2):-int(smoothing_size / 2)])
     y_vals = np.append(y_vals, np.repeat(y_vals[-int(smoothing_size / 2)], int(smoothing_size / 2)))
 
-    print("=============== red_grad  =============")
-    print(red_grad)
-
     # peak locator algorithm
     peak_locs = np.where(red_grad < -np.std(red_grad))
-    # if len(peak_locs[0])==0:
-    #     continue
 
     prev_pk = peak_locs[0][0]
     true_peak_locs, pk_loc_span = [], []
@@ -148,8 +122,6 @@ def heart_rate(t_vec, red_vec):
     #     continue
     # else:
     print('BPM: {0:2.1f}'.format(60.0 / np.mean(np.diff(t_peaks))))
-
-    # time.sleep(0.005)
 
 
 if __name__ == "__main__":
