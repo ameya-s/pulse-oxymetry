@@ -14,7 +14,7 @@ def main():
     mx30 = max30100.MAX30100(led_current_red=40.2, led_current_ir=27.1)
     mx30.set_mode(max30100.MODE_SPO2)
     mx30.enable_spo2()
-    data = {)
+    data = {}
 
     i = 0
     while True:
