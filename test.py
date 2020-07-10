@@ -68,6 +68,12 @@ def main():
 
 
 def heart_rate(t_vec, red_vec):
+    print("=============== t_vec  =============")
+    print(t_vec)
+
+    print("=============== red_vec  =============")
+    print(red_vec)
+
     heart_rate_span = [10, 250]  # max span of heart rate
     pts = 1800  # points used for peak finding (400 Hz, I recommend at least 4s (1600 pts)
     smoothing_size = 20  # convolution smoothing size
