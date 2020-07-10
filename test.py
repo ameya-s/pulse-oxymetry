@@ -19,6 +19,8 @@ def main():
 
     i = 0
     j = 0
+
+    t_start = time.time_ns()
     while True:
         if i > 5000:
             break
@@ -28,7 +30,7 @@ def main():
             print(mx30.ir, mx30.red)
 
             data[i] = {}
-            data[i]['tst'] = round(time.time() * 1000)
+            data[i]['tst'] = time.time_ns()
             data[i]['ir'] = mx30.ir
             data[i]['red'] = mx30.red
 
@@ -59,7 +61,7 @@ def main():
             #     data[i]['butter_ir'] =
 
             if j < 400:
-                t_vec.append(data[i]['tst'])
+                t_vec.append(data[i]['tst'] - t_start)
                 red_vec.append(data[i]['red'])
                 j += 1
             else:
