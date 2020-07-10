@@ -20,7 +20,7 @@ def main():
     i = 0
     j = 0
 
-    t_start = time.time() * 100
+    #t_start = time.time() * 100
     while True:
         if i > 5000:
             break
@@ -30,7 +30,7 @@ def main():
             # print(mx30.ir, mx30.red)
 
             data[i] = {}
-            data[i]['tst'] = time.time() * 1000 - t_start
+            data[i]['tst'] = time.time() * 1000
             data[i]['ir'] = mx30.ir
             data[i]['red'] = mx30.red
 
