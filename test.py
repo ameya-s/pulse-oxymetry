@@ -115,7 +115,7 @@ def heart_rate(t_vec, red_vec):
     red_grad[0:int(smoothing_size / 2) + 1] = np.zeros((int(smoothing_size / 2) + 1,))
     red_grad[-int(smoothing_size / 2) - 1:] = np.zeros((int(smoothing_size / 2) + 1,))
 
-    red_grad = np.nan_to_num(red_grad, copy=True, nan=0.0, posinf=None, neginf=None)
+    red_grad = np.nan_to_num(red_grad)
 
     y_vals = np.append(np.repeat(y_vals[int(smoothing_size / 2)], int(smoothing_size / 2)),
                        y_vals[int(smoothing_size / 2):-int(smoothing_size / 2)])
