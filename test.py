@@ -61,8 +61,9 @@ def main():
             if j < 400 * (i+1):
                 t_vec.append(data[i]['tst'])
                 red_vec.append(data[i]['red'])
-                heart_rate(t_vec,red_vec)
                 j += 1
+            else:
+                heart_rate(t_vec, red_vec)
             i += 1
 
         except IOError:
