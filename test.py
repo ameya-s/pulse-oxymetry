@@ -119,6 +119,9 @@ def heart_rate(t_vec, red_vec):
                        y_vals[int(smoothing_size / 2):-int(smoothing_size / 2)])
     y_vals = np.append(y_vals, np.repeat(y_vals[-int(smoothing_size / 2)], int(smoothing_size / 2)))
 
+    print("=============== red_grad  =============")
+    print(red_grad)
+
     # peak locator algorithm
     peak_locs = np.where(red_grad < -np.std(red_grad))
     # if len(peak_locs[0])==0:
