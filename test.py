@@ -83,10 +83,14 @@ def heart_rate(t_vec, red_vec):
     y_vals = red_vec
 
     y_vals = np.convolve(y_vals, np.ones((smoothing_size,)), 'same') / smoothing_size
-    red_grad = np.gradient(y_vals, t_vals)
 
-    print("=============== red_grad  =============")
-    print(red_grad)
+    print("=============== t_vals  =============")
+    print(t_vals)
+
+    print("=============== y_vals  =============")
+    print(y_vals)
+
+    red_grad = np.gradient(y_vals, t_vals)
 
     red_grad[0:int(smoothing_size / 2) + 1] = np.zeros((int(smoothing_size / 2) + 1,))
     red_grad[-int(smoothing_size / 2) - 1:] = np.zeros((int(smoothing_size / 2) + 1,))
