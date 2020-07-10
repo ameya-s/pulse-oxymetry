@@ -25,8 +25,8 @@ def main():
             break
         try:
             mx30.read_sensor()
-            print('i => ', i)
-            print(mx30.ir, mx30.red)
+            # print('i => ', i)
+            # print(mx30.ir, mx30.red)
 
             data[i] = {}
             data[i]['tst'] = round(time.time() * 1000)
