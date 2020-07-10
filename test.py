@@ -17,6 +17,7 @@ def main():
     data = {}
 
     i = 0
+    j = 0
     while True:
         if i > 5000:
             break
@@ -56,10 +57,12 @@ def main():
             # if i>0:
             #     data[i]['butter_ir'] =
 
-            if i != 0 and i % 400 == 0:
+            if j < 400 * (i+1) == 0:
                 heart_rate(data[i]['tst'], data[i]['red'])
+                j += 1
 
             i += 1
+
         except IOError:
             print('IO error : error in reading')
 
