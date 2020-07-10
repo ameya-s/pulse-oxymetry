@@ -60,7 +60,7 @@ def main():
             # if i>0:
             #     data[i]['butter_ir'] =
 
-            if j < 400:
+            if j < 1900:
                 t_vec.append(data[i]['tst'] - t_start)
                 red_vec.append(data[i]['red'])
                 j += 1
