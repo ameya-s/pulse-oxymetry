@@ -26,8 +26,8 @@ def main():
             break
         try:
             mx30.read_sensor()
-            print('i => ', i)
-            print(mx30.ir, mx30.red)
+            # print('i => ', i)
+            # print(mx30.ir, mx30.red)
 
             data[i] = {}
             data[i]['tst'] = round(time.time() * 1000)
@@ -104,11 +104,11 @@ def heart_rate(t_vec, red_vec):
 
     y_vals = np.convolve(y_vals, np.ones((smoothing_size,)), 'same') / smoothing_size
 
-    print("=============== t_vals  =============")
-    print(t_vals)
-
-    print("=============== y_vals  =============")
-    print(y_vals)
+    # print("=============== t_vals  =============")
+    # print(t_vals)
+    #
+    # print("=============== y_vals  =============")
+    # print(y_vals)
 
     red_grad = np.gradient(y_vals, t_vals)
 
