@@ -78,7 +78,7 @@ def heart_rate(t_vec, red_vec):
     t_vec = np.array(t_vec)
     red_vec = np.array(red_vec)
 
-    #t_vec = (t_vec - 1594416200000000) / 1e6
+    t_vec = (t_vec - 1594410000000000) / 1e6
 
     print("=============== t_vec  =============")
     print(t_vec)
