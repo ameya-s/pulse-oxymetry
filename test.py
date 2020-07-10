@@ -15,6 +15,7 @@ def main():
     mx30.set_mode(max30100.MODE_SPO2)
     mx30.enable_spo2()
     data = {}
+    t_vec, red_vec = [], []
 
     i = 0
     j = 0
@@ -58,9 +59,10 @@ def main():
             #     data[i]['butter_ir'] =
 
             if j < 400 * (i+1):
-                heart_rate(data[i]['tst'], data[i]['red'])
+                t_vec.append(data[i]['tst'])
+                red_vec.append(data[i]['red'])
+                heart_rate(t_vec,red_vec)
                 j += 1
-
             i += 1
 
         except IOError:
