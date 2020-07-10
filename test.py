@@ -66,7 +66,6 @@ def main():
                 j += 1
             else:
                 heart_rate(t_vec, red_vec)
-                break
             i += 1
 
         except IOError:
