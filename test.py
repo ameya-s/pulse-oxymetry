@@ -57,7 +57,7 @@ def main():
             # if i>0:
             #     data[i]['butter_ir'] =
 
-            if j < 400 * (i+1) == 0:
+            if j < 400 * (i+1):
                 heart_rate(data[i]['tst'], data[i]['red'])
                 j += 1
 
