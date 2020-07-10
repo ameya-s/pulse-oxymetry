@@ -82,11 +82,11 @@ def heart_rate(t_vec, red_vec):
 
     #t_vec = (t_vec - 1594410000000000) / 1e6
 
-    print("=============== t_vec  =============")
-    print(t_vec)
-
-    print("=============== red_vec  =============")
-    print(red_vec)
+    # print("=============== t_vec  =============")
+    # print(t_vec)
+    #
+    # print("=============== red_vec  =============")
+    # print(red_vec)
 
     heart_rate_span = [10, 250]  # max span of heart rate
     pts = 1800  # points used for peak finding (400 Hz, I recommend at least 4s (1600 pts)
@@ -104,11 +104,11 @@ def heart_rate(t_vec, red_vec):
 
     y_vals = np.convolve(y_vals, np.ones((smoothing_size,)), 'same') / smoothing_size
 
-    # print("=============== t_vals  =============")
-    # print(t_vals)
-    #
-    # print("=============== y_vals  =============")
-    # print(y_vals)
+    print("=============== t_vals  =============")
+    print(t_vals)
+
+    print("=============== y_vals  =============")
+    print(y_vals)
 
     red_grad = np.gradient(y_vals, t_vals)
 
