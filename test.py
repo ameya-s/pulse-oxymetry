@@ -14,10 +14,7 @@ def main():
     mx30 = max30100.MAX30100(led_current_red=40.2, led_current_ir=27.1)
     mx30.set_mode(max30100.MODE_SPO2)
     mx30.enable_spo2()
-    data = {}
-
-    pts = 1800  # points used for peak finding (400 Hz, I recommend at least 4s (1600 pts)
-    t_vals, y_vals = [], []
+    data = {)
 
     i = 0
     while True:
@@ -59,14 +56,9 @@ def main():
             # if i>0:
             #     data[i]['butter_ir'] =
 
-            while len(y_vals) < pts:
-                try:
-                    t_vals.append(float(data[i]['tst']) / 1000.0)
-                    y_vals.append(float(data[i]['red']))
+            if i != 0 and i % 1800 == 0:
+                heart_rate(data[i]['tst'], data[i]['red'])
 
-                    heart_rate(t_vals, y_vals)
-                except:
-                    continue
             i += 1
         except IOError:
             print('IO error : error in reading')
@@ -77,11 +69,14 @@ def main():
 
 def heart_rate(t_vec, red_vec):
     heart_rate_span = [10, 250]  # max span of heart rate
-
+    pts = 1800  # points used for peak finding (400 Hz, I recommend at least 4s (1600 pts)
     smoothing_size = 20  # convolution smoothing size
 
     # convolve, calculate gradient, and remove bad endpoints
-    samp_rate = 1 / np.mean(np.diff(t_vec))  # average sample rate for determining peaks
+
+    t_vals, y_vals = [], []
+
+    samp_rate = 1 / np.mean(np.diff(t_vals))  # average sample rate for determining peaks
     min_time_bw_samps = (60.0 / heart_rate_span[1])
 
     t_vals = t_vec
@@ -121,6 +116,9 @@ def heart_rate(t_vec, red_vec):
     #     continue
     # else:
     print('BPM: {0:2.1f}'.format(60.0 / np.mean(np.diff(t_peaks))))
+
+    # time.sleep(0.005)
+
 
 if __name__ == "__main__":
     main()
